@@ -1,20 +1,36 @@
-import type { NextPage } from 'next'
+import axios from 'axios'
 import Head from 'next/head'
+import { Video } from '../types'
+import VideoCard from '../components/VideoCard';
+import NoResults from '../components/NoResults';
 
-const Home: NextPage = () => {
+interface IVideo {
+  videos: Video[]
+}
+const Home = ({ videos }: IVideo) => {
+  console.log(videos)
   return (
     <div>
-      <Head>
-        <title>TikTok App</title>
-        <meta name="description" content="TikTok App" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <main>
-        <h2 className="text-3xl text-center my-3 mx-auto text-blue-600">TikTok APP</h2>
-      </main>
-
+      <div className='flex flex-col gap-10 videos h-full'>
+      {videos.length ? 
+        videos?.map((video: Video) => (
+          <VideoCard post={video} key={video._id} />
+        )) 
+        : <NoResults text={`No Videos`} />}
+    </div>
     </div>
   )
+}
+
+export const getServerSideProps = async () => {
+  const {data} = await axios.get(`http://localhost:3000/api/post`)
+
+
+  return {
+    props: {
+      videos: data
+    }
+  }
 }
 
 export default Home
