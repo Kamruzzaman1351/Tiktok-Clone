@@ -4,7 +4,6 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { AiFillHome, AiOutlineMenu } from 'react-icons/ai';
 import { ImCancelCircle } from 'react-icons/im';
-import GoogleLogin from 'react-google-login';
 
 
 import SuggestedAccounts from './SuggestedAccounts'
@@ -37,7 +36,7 @@ const Sidebar = () => {
               </div>
             </Link>
           </div>
-          {true && (
+          {/* {true && (
             <div className='px-2 py-4 hidden xl:block'>
               <p className='text-gray-600'> Login to Like & Comment Video</p>
               <div className='pr-4'>
@@ -58,7 +57,7 @@ const Sidebar = () => {
                 />
               </div>
             </div>
-          )}
+          )} */}
           <Discover />
           <SuggestedAccounts />
           <Footer />

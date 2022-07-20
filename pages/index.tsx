@@ -8,7 +8,6 @@ interface IVideo {
   videos: Video[]
 }
 const Home = ({ videos }: IVideo) => {
-  console.log(videos)
   return (
     <div>
       <div className='flex flex-col gap-10 videos h-full'>
