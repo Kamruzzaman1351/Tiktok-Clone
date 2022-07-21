@@ -6,7 +6,8 @@ import Link from 'next/link';
 import { MdOutlineCancel } from 'react-icons/md';
 import { BsFillPlayFill } from 'react-icons/bs';
 import { HiVolumeUp, HiVolumeOff } from 'react-icons/hi';
-
+import LikeButton from '../../components/LikeButton';
+import Comments from '../../components/Comments';
 import { BASE_URL } from '../../utils';
 import useAuthStore from '../../store/authStore';
 import { Video } from '../../types';
@@ -138,9 +139,20 @@ const Detail = ({ postDetails }: IProps) => {
                 <p className=' text-md text-gray-600'>{post.caption}</p>
               </div>
               <div className='mt-10 px-10'>
-                {/* LikeButton */}
+                {userProfile && <LikeButton
+                  likes={post.likes}
+                  flex='flex'
+                  handleLike={() => handleLike(true)}
+                  handleDislike={() => handleLike(false)}
+                />}
               </div>
-              {/* Comment Section */}
+              <Comments
+                comment={comment}
+                setComment={setComment}
+                addComment={addComment}
+                comments={post.comments}
+                isPostingComment={isPostingComment}
+              />
             </div>
           </div>
         </div>
